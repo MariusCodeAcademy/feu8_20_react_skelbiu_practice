@@ -29,6 +29,9 @@ export default function CreateAdd() {
     <div className='container'>
       <h1 className='text-3xl mb-4 pt-4'>CreateAdd</h1>
       <p>CreateAdd here</p>
+      <form>
+        <input type='text' placeholder='title' />
+      </form>
       <button
         onClick={createAdd}
         className='text-lg border border-slate-500 px-3 pb-[0.752rem] py-2 rounded-md hover:bg-slate-200'
