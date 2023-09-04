@@ -49,3 +49,17 @@ Skelbimų portalas
 - LoginPage
 
   - LoginComponent
+
+```js
+const singeItem = {
+  id: 1,
+  title: 'iPhone 9',
+  description: 'An apple mobile which is nothing like apple',
+  price: 549,
+  stock: 94,
+  brand: 'Apple',
+  category: 'smartphones',
+  mainImgUrl: '...',
+  tags: ['tech', 'phones', '...'],
+};
+```
