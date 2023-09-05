@@ -10,6 +10,7 @@ function OneLink(props) {
 }
 
 export default function Header() {
+  // atvaizduoti prisijungusio userio email is conteksto
   const ctx = useAuth();
   console.log('ctx ===', ctx);
   return (

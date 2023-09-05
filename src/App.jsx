@@ -27,6 +27,7 @@ export default function App() {
             ctx.isUserLoggedIn ? <MyAccountPage /> : <Navigate to={'/login'} />
           }
         />
+        {/* pasiekiamas tik neprisijugusiems */}
         <Route path='/login' element={<LoginPage />} />
         <Route
           path='*'
