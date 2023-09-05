@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const AuthContext = createContext({
   email: '',
   isUserLoggedIn: '',
+  userUid: '',
 });
 
 AuthContext.displayName = 'Auth';
@@ -12,12 +13,14 @@ export default function AuthProvider(props) {
   const [fireUser, setFireUser] = useState({});
 
   const email = fireUser.email;
+  const userUid = fireUser.uid;
   let isUserLoggedIn = !!email;
   isUserLoggedIn = email ? true : false;
 
   const ctx = {
     email: email,
     isUserLoggedIn: isUserLoggedIn,
+    userUid: userUid,
   };
 
   useEffect(() => {
