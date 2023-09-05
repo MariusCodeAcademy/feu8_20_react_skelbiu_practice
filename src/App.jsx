@@ -28,7 +28,7 @@ export default function App() {
           }
         />
         {/* pasiekiamas tik neprisijugusiems */}
-        <Route path='/login' element={<LoginPage />} />
+        {!ctx.isUserLoggedIn && <Route path='/login' element={<LoginPage />} />}
         <Route
           path='*'
           element={
