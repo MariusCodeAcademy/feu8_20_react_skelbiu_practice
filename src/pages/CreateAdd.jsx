@@ -1,18 +1,23 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useAuth } from '../store/AuthProvider';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../firebase/firebase';
+import toast from 'react-hot-toast';
 
-const CreateAdd = () => {
+function CreateAdd() {
+  const ctx = useAuth();
   // Initial values for the form fields
   const initialValues = {
-    title: '',
-    description: '',
-    price: '',
-    stock: '',
-    brand: '',
-    category: '',
-    mainImgUrl: '',
-    tags: '',
+    title: 'iPhone 9',
+    description: 'An apple mobile which is nothing like apple',
+    price: 549,
+    stock: 94,
+    brand: 'Apple',
+    category: 'smartphones',
+    mainImgUrl: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
+    tags: 'tech, phones',
   };
 
   // Validation schema using Yup
@@ -42,10 +47,28 @@ const CreateAdd = () => {
     validationSchema,
     onSubmit: (values) => {
       // Handle form submission here
-      console.log('Form submitted with values:', values);
+      // console.log('Form submitted with values:', values);
+      const newAddObjWithUid = {
+        ...values,
+        userUid: ctx.userUid,
+      };
+      console.log('newAddObjWithUid ===', newAddObjWithUid);
+      sendDataToFireBase(newAddObjWithUid);
     },
   });
   console.log('formik.errors ===', formik.errors);
+
+  async function sendDataToFireBase(dataToSend) {
+    console.log('creating');
+    try {
+      const docRef = await addDoc(collection(db, 'skelbimai'), dataToSend);
+      console.log('Document written with ID: ', docRef.id);
+      toast.success('Add created');
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      toast.error('something went wrong');
+    }
+  }
 
   return (
     <div className='min-h-screen bg-gray-100 flex items-center justify-center'>
@@ -287,6 +310,6 @@ const CreateAdd = () => {
       </div>
     </div>
   );
-};
+}
 
 export default CreateAdd;
