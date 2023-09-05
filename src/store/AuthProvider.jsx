@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext({
   email: '',
@@ -8,9 +8,15 @@ const AuthContext = createContext({
 AuthContext.displayName = 'Auth';
 
 export default function AuthProvider(props) {
+  const [fireUser, setFireUser] = useState({});
+
+  const email = fireUser.email;
+  let isUserLoggedIn = !!email;
+  isUserLoggedIn = email ? true : false;
+
   const ctx = {
-    email: 'James@',
-    isUserLoggedIn: '',
+    email: email,
+    isUserLoggedIn: isUserLoggedIn,
   };
   return (
     <AuthContext.Provider value={ctx}>{props.children}</AuthContext.Provider>
