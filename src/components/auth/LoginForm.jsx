@@ -18,7 +18,7 @@ export default function LoginForm() {
   console.log('formik.errors ===', formik.errors);
   console.log('formik.touched ===', formik.touched);
   return (
-    <div>
+    <div className='border border-slate-500 p-8 shadow-md rounded-sm'>
       <form onSubmit={formik.handleSubmit} className='max-w-xs'>
         <div className='mb-2'>
           <input
