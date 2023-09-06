@@ -31,9 +31,11 @@ export default function HomePage() {
     deleteDoc(doc(db, 'skelbimai', delId))
       .then(() => {
         toast.success('istrinta');
+        getAdds();
       })
       .catch((error) => {
         console.warn('ivyko klaida:', error);
+        toast.error('istrinti nepavyko');
       });
   }
 
@@ -60,12 +62,14 @@ export default function HomePage() {
             >
               Read more
             </Link>
-            <button
-              onClick={() => deleteFire(id)}
-              className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-red-600 text-white'
-            >
-              delete
-            </button>
+            {userUid === ctx.userUid && (
+              <button
+                onClick={() => deleteFire(id)}
+                className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-red-600 text-white'
+              >
+                delete
+              </button>
+            )}
           </li>
         ))}
       </ul>
