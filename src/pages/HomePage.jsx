@@ -4,6 +4,7 @@ import { db } from '../firebase/firebase';
 import { useAuth } from '../store/AuthProvider';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import SingleAddCard from '../components/adds/SingleAddCard';
 
 export default function HomePage() {
   const [addsArr, setAddsArr] = useState([]);
@@ -45,32 +46,33 @@ export default function HomePage() {
       <p>welcome to out adds</p>
 
       <ul className='grid grid-cols-3 gap-3'>
-        {addsArr.map(({ id, title, price, userUid }) => (
-          <li
-            key={id}
-            className={`border-[1px] px-4 py-3 inline-block ${isMine(
-              userUid,
-              ctx.userUid
-            )}`}
-          >
-            <h2 className='font-bold text-2xl'>{title}</h2>
-            <p>{price}eur</p>
-            <p>userUid: {userUid}</p>
-            <Link
-              className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-slate-600 text-white'
-              to={`/adds/${id}`}
-            >
-              Read more
-            </Link>
-            {userUid === ctx.userUid && (
-              <button
-                onClick={() => deleteFire(id)}
-                className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-red-600 text-white'
-              >
-                delete
-              </button>
-            )}
-          </li>
+        {addsArr.map((addObj) => (
+          <SingleAddCard key={addObj.id} item={addObj} />
+          // <li
+
+          //   className={`border-[1px] px-4 py-3 inline-block ${isMine(
+          //     userUid,
+          //     ctx.userUid
+          //   )}`}
+          // >
+          //   <h2 className='font-bold text-2xl'>{title}</h2>
+          //   <p>{price}eur</p>
+          //   <p>userUid: {userUid}</p>
+          //   <Link
+          //     className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-slate-600 text-white'
+          //     to={`/adds/${id}`}
+          //   >
+          //     Read more
+          //   </Link>
+          //   {userUid === ctx.userUid && (
+          //     <button
+          //       onClick={() => deleteFire(id)}
+          //       className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-red-600 text-white'
+          //     >
+          //       delete
+          //     </button>
+          //   )}
+          // </li>
         ))}
       </ul>
     </div>
