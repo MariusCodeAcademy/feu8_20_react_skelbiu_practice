@@ -21,7 +21,7 @@ function CreateAdd() {
 
   // Validation schema using Yup
   const validationSchema = Yup.object({
-    title: Yup.string().required('Title is required'),
+    title: Yup.string().min(3).max(255).required('Title is required'),
     description: Yup.string().required('Description is required'),
     price: Yup.number()
       .required('Price is required')
@@ -43,7 +43,7 @@ function CreateAdd() {
   // Formik configuration
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       // Handle form submission here
       // console.log('Form submitted with values:', values);
@@ -55,7 +55,7 @@ function CreateAdd() {
       sendDataToFireBase(newAddObjWithUid);
     },
   });
-  console.log('formik.errors ===', formik.errors);
+  // console.log('formik.errors ===', formik.errors);
 
   async function sendDataToFireBase(dataToSend) {
     console.log('creating');
