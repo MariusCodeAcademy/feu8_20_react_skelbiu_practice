@@ -42,7 +42,6 @@ export default function HomePage() {
     <div className='container'>
       <h1 className='text-3xl mb-4 pt-4'>HomePage</h1>
       <p>welcome to out adds</p>
-
       <AddCardList list={addsArr} onDelete={deleteFire} />
     </div>
   );

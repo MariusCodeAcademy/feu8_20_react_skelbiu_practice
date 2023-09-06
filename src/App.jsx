@@ -6,6 +6,7 @@ import CreateAdd from './pages/CreateAdd';
 import LoginPage from './pages/LoginPage';
 import { useAuth } from './store/AuthProvider';
 import { Toaster } from 'react-hot-toast';
+import SingleAddPage from './pages/SingleAddPage';
 
 export default function App() {
   const ctx = useAuth();
@@ -15,6 +16,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/adds/:addId' element={<SingleAddPage />} />
         <Route
           path='/create-add'
           element={
