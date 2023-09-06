@@ -25,6 +25,7 @@ function logoutFire() {
     })
     .catch((error) => {
       // An error happened.
+      console.log('error ===', error);
     });
 }
 
