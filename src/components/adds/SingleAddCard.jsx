@@ -25,7 +25,7 @@ export default function SingleAddCard(props) {
       </Link>
       {isMine && (
         <button
-          onClick={() => {}}
+          onClick={props.onDelete}
           className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-red-600 text-white'
         >
           delete

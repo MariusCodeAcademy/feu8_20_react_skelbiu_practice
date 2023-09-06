@@ -47,7 +47,11 @@ export default function HomePage() {
 
       <ul className='grid grid-cols-3 gap-3'>
         {addsArr.map((addObj) => (
-          <SingleAddCard key={addObj.id} item={addObj} />
+          <SingleAddCard
+            key={addObj.id}
+            item={addObj}
+            onDelete={() => deleteFire(addObj.id)}
+          />
         ))}
       </ul>
     </div>
